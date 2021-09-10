@@ -33,6 +33,9 @@
             ],
             "styles": [
               {
+                "input": "node_modules/bootstrap/scss/bootstrap.scss"
+              },
+              {
                 "input": "src/theme/variables.scss"
               },
               {
@@ -183,6 +186,7 @@
     }
   },
   "cli": {
+    "analytics": "158d7e65-1c28-421f-bcd5-3ac27055b221",
     "defaultCollection": "@ionic/angular-toolkit"
   },
   "schematics": {

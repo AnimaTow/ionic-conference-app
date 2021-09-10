@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
-
+import { Storage } from '@ionic/storage-angular';
+import { User } from './user';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +13,17 @@ export class UserData {
   favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
+  endpoint: string = 'https://os-up.com/api';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
+
 
   constructor(
-    public storage: Storage
-  ) { }
+    public storage: Storage,
+    private http: HttpClient,
+    public router: Router
+    ) { }
+
 
   hasFavorite(sessionName: string): boolean {
     return (this.favorites.indexOf(sessionName) > -1);

@@ -5,7 +5,7 @@ import { CheckTutorial } from './providers/check-tutorial.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tutorial',
+    redirectTo: '/media/movies',
     pathMatch: 'full'
   },
   {
@@ -29,9 +29,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule)
   },
   {
-    path: 'tutorial',
-    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
-    canLoad: [CheckTutorial]
+    path: 'media',
+    loadChildren: () => import('./pages/media-tabs/media-tabs.module').then(m => m.MediaTabsPageModule)
   }
 ];
 

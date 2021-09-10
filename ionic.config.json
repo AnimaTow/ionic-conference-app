@@ -1,7 +1,8 @@
 {
-  "name": "ionic-conference-app",
+  "name": "projekt-osup-app",
   "type": "angular",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   }
 }

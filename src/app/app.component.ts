@@ -40,8 +40,32 @@ export class AppComponent implements OnInit {
       icon: 'information-circle'
     }
   ];
+
+  appMediaPages = [
+    {
+      title: 'Movies',
+      url: '/media/movies',
+      icon: 'calendar'
+    },
+    {
+      title: 'Serien',
+      url: '/media/serien',
+      icon: 'people'
+    },
+    {
+      title: 'Animes',
+      url: '/media/animes',
+      icon: 'map'
+    },
+    {
+      title: 'Pornos',
+      url: '/media/pornos',
+      icon: 'information-circle'
+    }
+  ];
+
   loggedIn = false;
-  dark = false;
+  dark = true;
 
   constructor(
     private menu: MenuController,
@@ -58,12 +82,13 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.storage.create();
     this.checkLoginStatus();
     this.listenForLoginEvents();
 
     this.swUpdate.available.subscribe(async res => {
       const toast = await this.toastCtrl.create({
-        message: 'Update available!',
+        message: 'Update verfügbar!',
         position: 'bottom',
         buttons: [
           {
@@ -72,7 +97,6 @@ export class AppComponent implements OnInit {
           }
         ]
       });
-
       await toast.present();
 
       toast
@@ -119,11 +143,5 @@ export class AppComponent implements OnInit {
     this.userData.logout().then(() => {
       return this.router.navigateByUrl('/app/tabs/schedule');
     });
-  }
-
-  openTutorial() {
-    this.menu.enable(false);
-    this.storage.set('ion_did_tutorial', false);
-    this.router.navigateByUrl('/tutorial');
   }
 }
